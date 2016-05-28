@@ -4,18 +4,27 @@
 #
 Name     : R-minqa
 Version  : 1.2.4
-Release  : 20
+Release  : 21
 URL      : http://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
 Summary  : Derivative-free optimization algorithms by quadratic
 Group    : Development/Tools
 License  : GPL-2.0
+Requires: R-minqa-lib
 Requires: R-Rcpp
 BuildRequires : R-Rcpp
 BuildRequires : clr-R-helpers
 
 %description
 No detailed description available
+
+%package lib
+Summary: lib components for the R-minqa package.
+Group: Libraries
+
+%description lib
+lib components for the R-minqa package.
+
 
 %prep
 %setup -q -c -n minqa
@@ -25,13 +34,21 @@ No detailed description available
 %install
 rm -rf %{buildroot}
 export LANG=C
+export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
 R CMD INSTALL --install-tests --build  -l %{buildroot}/usr/lib64/R/library minqa
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=intel.com,localhost
+export no_proxy=localhost
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library minqa
 
@@ -56,5 +73,8 @@ R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/lib
 /usr/lib64/R/library/minqa/help/paths.rds
 /usr/lib64/R/library/minqa/html/00Index.html
 /usr/lib64/R/library/minqa/html/R.css
-/usr/lib64/R/library/minqa/libs/minqa.so
 /usr/lib64/R/library/minqa/libs/symbols.rds
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/R/library/minqa/libs/minqa.so
