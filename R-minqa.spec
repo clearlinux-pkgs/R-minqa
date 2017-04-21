@@ -4,7 +4,7 @@
 #
 Name     : R-minqa
 Version  : 1.2.4
-Release  : 30
+Release  : 31
 URL      : http://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
 Summary  : Derivative-free optimization algorithms by quadratic
@@ -30,12 +30,15 @@ lib components for the R-minqa package.
 %setup -q -c -n minqa
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1484544437
+export SOURCE_DATE_EPOCH=1492801885
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1484544437
+export SOURCE_DATE_EPOCH=1492801885
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -51,7 +54,7 @@ R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library minqa
 
@@ -61,6 +64,7 @@ R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/lib
 /usr/lib64/R/library/minqa/DESCRIPTION
 /usr/lib64/R/library/minqa/INDEX
 /usr/lib64/R/library/minqa/Meta/Rd.rds
+/usr/lib64/R/library/minqa/Meta/features.rds
 /usr/lib64/R/library/minqa/Meta/hsearch.rds
 /usr/lib64/R/library/minqa/Meta/links.rds
 /usr/lib64/R/library/minqa/Meta/nsInfo.rds
