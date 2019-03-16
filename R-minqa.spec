@@ -4,16 +4,16 @@
 #
 Name     : R-minqa
 Version  : 1.2.4
-Release  : 56
+Release  : 57
 URL      : http://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
 Source0  : http://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
 Summary  : Derivative-free optimization algorithms by quadratic
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: R-minqa-lib
+Requires: R-minqa-lib = %{version}-%{release}
 Requires: R-Rcpp
 BuildRequires : R-Rcpp
-BuildRequires : clr-R-helpers
+BuildRequires : buildreq-R
 
 %description
 based on an interface to Fortran implementations by M. J. D.
@@ -35,11 +35,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523319024
+export SOURCE_DATE_EPOCH=1552776483
 
 %install
+export SOURCE_DATE_EPOCH=1552776483
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1523319024
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -74,8 +74,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library minqa|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  minqa || :
 
 
 %files
@@ -99,7 +98,9 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/minqa/help/paths.rds
 /usr/lib64/R/library/minqa/html/00Index.html
 /usr/lib64/R/library/minqa/html/R.css
-/usr/lib64/R/library/minqa/libs/symbols.rds
+/usr/lib64/R/library/minqa/tests/cyq-minqa.R
+/usr/lib64/R/library/minqa/tests/newuoa.R
+/usr/lib64/R/library/minqa/tests/rvaltest.R
 
 %files lib
 %defattr(-,root,root,-)
