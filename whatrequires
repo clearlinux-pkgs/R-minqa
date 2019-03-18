@@ -1,4 +1,12 @@
 # This file contains recursive sources that require this package
 R-car
+R-effects
+R-gamm4
+R-joineRML
 R-lme4
+R-lmerTest
+R-mlmRev
+R-multcomp
+R-pbkrtest
+R-sem
 R-survey
