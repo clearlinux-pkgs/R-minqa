@@ -1,12 +1,10 @@
 # This file contains recursive sources that require this package
+R-BradleyTerry2
 R-car
-R-effects
-R-gamm4
 R-joineRML
 R-lme4
-R-lmerTest
+R-mi
 R-mlmRev
 R-multcomp
-R-pbkrtest
 R-sem
 R-survey
