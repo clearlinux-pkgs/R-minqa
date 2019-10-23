@@ -4,16 +4,17 @@
 #
 Name     : R-minqa
 Version  : 1.2.4
-Release  : 64
+Release  : 65
 URL      : https://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
-Summary  : Derivative-free optimization algorithms by quadratic
+Summary  : Derivative-free optimization algorithms by quadratic approximation
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: R-minqa-lib = %{version}-%{release}
 Requires: R-Rcpp
 BuildRequires : R-Rcpp
 BuildRequires : buildreq-R
+BuildRequires : util-linux
 
 %description
 based on an interface to Fortran implementations by M. J. D.
@@ -35,10 +36,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569363900
+export SOURCE_DATE_EPOCH=1571865747
 
 %install
-export SOURCE_DATE_EPOCH=1569363900
+export SOURCE_DATE_EPOCH=1571865747
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
