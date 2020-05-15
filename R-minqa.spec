@@ -4,17 +4,16 @@
 #
 Name     : R-minqa
 Version  : 1.2.4
-Release  : 68
+Release  : 69
 URL      : https://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/minqa_1.2.4.tar.gz
-Summary  : Derivative-free optimization algorithms by quadratic approximation
+Summary  : Derivative-free optimization algorithms by quadratic
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: R-minqa-lib = %{version}-%{release}
 Requires: R-Rcpp
 BuildRequires : R-Rcpp
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
 based on an interface to Fortran implementations by M. J. D.
@@ -30,21 +29,22 @@ lib components for the R-minqa package.
 
 %prep
 %setup -q -c -n minqa
+cd %{_builddir}/minqa
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571865747
+export SOURCE_DATE_EPOCH=1589507829
 
 %install
-export SOURCE_DATE_EPOCH=1571865747
+export SOURCE_DATE_EPOCH=1589507829
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
