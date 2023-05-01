@@ -4,7 +4,7 @@
 #
 Name     : R-minqa
 Version  : 1.2.5
-Release  : 89
+Release  : 90
 URL      : https://cran.r-project.org/src/contrib/minqa_1.2.5.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/minqa_1.2.5.tar.gz
 Summary  : Derivative-Free Optimization Algorithms by Quadratic
